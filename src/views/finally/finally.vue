@@ -1,11 +1,17 @@
 <template>
  
 <div class="d1">finally</div>
-  
+<el-button @click="back">返回</el-button>
 </template>
  
 <script setup>
-
+import { useRouter } from "vue-router";
+const router = useRouter()
+const back = ()=>{
+   router.push({
+      name:'Layout'
+   })
+}
 
 </script>
  

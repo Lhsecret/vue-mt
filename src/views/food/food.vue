@@ -1,6 +1,6 @@
 <template>
  
-<div class="d1" ref="d1Ref">
+<div class="d1" ref="d1Ref" >
     <div class="top" :style="topbg">
 
         
@@ -39,7 +39,7 @@
                 </div>
                 <!-- <Scroll> -->
                     <div class="right">
-                    <Scroll style="height: 100%; overflow: hidden;" @scroll="onScroll" >
+                    <Scroll style="height: 100%; overflow: hidden;" @scroll="onScroll">
                         <ul ref="groupRef">
                         <li
                         v-for="(index,index1) in once"

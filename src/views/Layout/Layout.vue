@@ -157,13 +157,13 @@ const isshow = ()=>{
 //     return !categoryImg.value.length || !shopList.value.length
 // })
 
-// watch(()=>router.currentRoute.value.name,()=>{
-//     if(router.currentRoute.value.name === 'isshow'){
-//         location.reload();
-//     }
+watch(()=>router.currentRoute.value.name,()=>{
+    if(router.currentRoute.value.name === 'isshow'){
+        location.reload();
+    }
   
   
-// })
+})
 
 const categoryFn = async()=>{
 
