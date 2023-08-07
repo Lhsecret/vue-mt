@@ -109,14 +109,14 @@ import Scroll from "@/components/base/scroll";
 import router from '@/router';
 import shoppingCart from '@/components/shoppingCart/shoppingCart.vue'
 import {useuser} from '@/store/user'
-import { getSession,setSession,removeAllItem,removeItem, getLocal} from '@/api/storage'
-// import VueCookies from 'vue-cookies';
+import { getSession,setSession,removeAllItem,removeItem, getLocal, setLocal} from '@/api/storage'
+
 import {useCookies} from 'vue3-cookies'
 
-const userStore = useuser()
+
 const {cookies} = useCookies()
 const once = ref([])
-const isappear = ref(false)
+
 const groupRef = ref(null)
 const d1Ref = ref(null)
 const boxRef = ref(null)
@@ -129,36 +129,17 @@ let arr = reactive({
    
 })
 let numlist = {}
-    // '0':0,
-    // '1':0,
-    // '2':0,
-    // '3':0,
-    // '4':0,
-    // '5':0,
-    // '6':0,
-    // '7':0,
-    // '8':0,
-    // '9':0,
-    // '10':0
-
-
-
+ 
 const Every = ref([])
 const activeName = ref('first')
 
 const scrollY = ref(0)
 const arr2 = ref([])
 const turnFood = useshopfood() 
-// let number = turnFood.oldshopNum(Every.name)
-// let price = turnFood.oldshopTotal(Every.name)
+
 cartList.value = turnFood.shoppingCart
 
-// console.log(turnFood.oldshoppingCart)
-// numlist.value = turnFood.singleShopNum
-// console.log(turnFood.singleShopNum)
-// console.log(numlist)
-// const differ = ref(1)
-// const numlist = turnFood.numList
+
 const clearFn = (n) =>{
     numlist = n
 }
@@ -177,7 +158,7 @@ watch(()=>once.value,async()=>{
 
 function gain(){
     const All = groupRef.value.children
-    // const unit = All.slice(0,4)
+   
     const unit = All[0].clientHeight * 4
     const newarr = []
     newarr[0] = 0
@@ -185,17 +166,17 @@ function gain(){
 
     for(let i = 1;i < l.length;i ++){
         newarr[i] = newarr[i - 1] + unit
-        // console.log(newarr[i])
+       
     }
     arr2.value = newarr
-    // console.log(All[0].clientHeight)
+    
 }
 
 watch(scrollY,(newVal)=>{
     const New = arr2.value
     const L = Every.value.list
     const l = L.length
-    // console.log(New)
+   
     for(let j = 0;j < L.length - 1;j ++){
         if(newVal >= New[j] && newVal < New[j + 1]){
             changecolor.value = j
@@ -223,7 +204,16 @@ const settlement = ()=>{
     cookies.set(`${user}`,JSON.stringify(cart),'2d')
     turnFood.shopTotal = 0
    turnFood.shopNum = 0
-   turnFood.historyshop = a
+
+    let history = getLocal('__historyshop__',[])
+    if(history.length === 0){
+        setLocal('__historyshop__',a.name)
+    }else{
+        let arr = getLocal('__historyshop__',[])
+        arr.push(a)
+        setLocal('__historyshop__',a.name)
+    }
+   
         router.push({
             name:'finally'
         })
@@ -253,44 +243,31 @@ const select = async(index,index1,Every)=>{
         arr[`${index1}`] = index1
         numlist[`${index1}`]++
         console.log(numlist)
-        // console.log(numlist[`${index1}`])
-        // console.log(numlist)
+       
         turnFood.singleShopNum[`${index1}`] = numlist[`${index1}`]
         console.log(turnFood.singleShopNum)
         index['num'] = turnFood.singleShopNum[`${index1}`]
        console.log(index)
-        // console.log(turnFood.singleShopNum[`${index1}`])
-        // const p = arr[`${index1}`]
-        // console.log(arr[`${index1}`])
-        // currentIndex.value = index.ranking
-
-        // number.value = turnFood.oldshopNum(Every.name)
-        // price.value = turnFood.oldshopTotal(Every.name)
-        // console.log(number.value)
+      
         turnFood.shopTotal =  turnFood.shopTotal + Number(index.price)
     
-        // turnFood.shopTotal = price
+        
         turnFood.shopNum = turnFood.shopNum + 1
-        // console.log(turnFood.shopNum)
-        // turnFood.shopNum = number
+        
         index['position'] = index1
-        // console.log(index)
-        // console.log(index)
+      
         console.log(numlist)
         if(numlist[`${index1}`] === 1){
             cartList.value.push(index)
         }
   
-        // await nextTick()
+       
         let cart = turnFood.shoppingAll
         console.log(turnFood.shoppingAll)
         const name = Every.name
-        // console.log(cart)
-        // console.log(turnFood.shoppingAll)
-       
        
         cart[`${name}`] = cartList.value
-        // console.log(cartList.value)
+       
         console.log( cart[`${name}`])
         cart[`${name}`][0]['priceTotal'] = turnFood.shopTotal
         console.log(cart)
@@ -301,12 +278,7 @@ const select = async(index,index1,Every)=>{
         
         const user = getLocal('__user__','')
         cookies.set(`${user}`,JSON.stringify(cart),'2d')
-        // console.log(cookies.get(`${user}`))
-
-        // turnFood.shoppingCart = cartList.value
-        // console.log(turnFood.shoppingCart)
-        // arr['haa'] = "1"
-        // console.log(arr.name,arr)
+      
     }
     
    
@@ -319,11 +291,11 @@ const addFood = (index,index1,Every)=>{
         turnFood.singleShopNum[`${index1}`] = numlist[`${index1}`]
         index.num = turnFood.singleShopNum[`${index1}`]
 
-        // console.log(turnFood.singleShopNum[`${index1}`])
+        
         turnFood.shopTotal =  turnFood.shopTotal + Number(index.price)
-        // turnFood.shopTotal = price.value
+       
         turnFood.shopNum = turnFood.shopNum + 1
-        // turnFood.shopNum = number.value
+       
         let cart = turnFood.shoppingAll
         const name = Every.name
 
@@ -331,29 +303,11 @@ const addFood = (index,index1,Every)=>{
         arr[index1].num = index.num
        console.log(arr[index1])
       
-        // console.log(turnFood.shoppingAll)
-        
-        // cart[`${name}`] = cartList.value
-
         cart[`${name}`][0].priceTotal = turnFood.shopTotal
         cart[`${name}`][0].NumTotal = turnFood.shopNum
         cart[`${name}`][0].SingleShop = turnFood.singleShopNum
         const user = getLocal('__user__','')
         cookies.set(`${user}`,JSON.stringify(cart),'2d')
-
-        // const cart = cartList.value
-        // cart[0]['priceTotal'] = turnFood.shopTotal
-        // cart[0]['NumTotal'] = turnFood.shopNum
-        // const user = getLocal('__user__','')
-        // cookies.set(`${user}`,JSON.stringify(cartList.value),'2d')
-        
-        // if(numlist[`${index1}`] === 1){
-        //     cartList.value.push(index)
-        // }
-        
-        // turnFood.historyshop.push(index)
-       
-        // console.log(number.value,price.value)
 
 }
 
@@ -363,14 +317,13 @@ const reduceFood = (index,index1,Every)=>{
 
     turnFood.singleShopNum[`${index1}`] = numlist[`${index1}`]
     index['num'] = turnFood.singleShopNum[`${index1}`]
-
-    // differ.value = numlist[`${index1}`]
+ 
     turnFood.shopNum = turnFood.shopNum - 1
-    // turnFood.shopNum = number.value
+   
     turnFood.shopTotal =   turnFood.shopTotal - Number(index.price)
-    // turnFood.shopTotal = price.value
+    
     let arr = cartList.value
-    // console.log(arr)
+   
     if(!numlist[`${index1}`]){
         for(let i = 0;i < arr.length;i ++){
         if(arr[i].position === index1){
@@ -379,19 +332,16 @@ const reduceFood = (index,index1,Every)=>{
         }
         
     }
-    // console.log(index1)
+   
     }
        if(cartList.value.length != 0){
         let cart = turnFood.shoppingAll
         const name = Every.name
-        // console.log(cart)
-        // console.log(turnFood.shoppingAll)
-        // console.log(name)
-        // cart[`${name}`] = cartList.value
+       
         cart[`${name}`][0].priceTotal = turnFood.shopTotal
         console.log( cart[`${name}`][0].priceTotal)
         cart[`${name}`][0].NumTotal = turnFood.shopNum
-        // cart[`${name}`][0]['All'] = arr
+      
         cart[`${name}`][0].SingleShop = turnFood.singleShopNum
         const user = getLocal('__user__','')
         cookies.set(`${user}`,JSON.stringify(cart),'2d')
@@ -406,17 +356,7 @@ const reduceFood = (index,index1,Every)=>{
         cookies.set(`${user}`,JSON.stringify(cart),'2d')
        }
         
-    //    let Cart = turnFood.shoppingAll
-
-        
-        
-    // const cart = cartList.value
-    // cart[0]['priceTotal'] = turnFood.shopTotal
-    // cart[0]['NumTotal'] = turnFood.shopNum
-    // const user = getLocal('__user__','')
-    // cookies.set(`${user}`,JSON.stringify(cartList.value),'2d')
-    
-   
+  
 }
 
 const topbg = computed(()=>{
@@ -434,28 +374,15 @@ function set(p) {
         arr[`${i}`] = -1
         numlist[`${i}`] = 0
     }
-    // console.log(arr)
+   
 }
 
 onMounted(()=>{
 
-    // const p = once.value
-    // set(p)
-    // const a = Every.value.name
-    // arr = turnFood.oldAll(a)
-    // console.log(turnFood.foodnumber,turnFood.foodprice)
-    // console.log(number.value,price.value)
+  
 })
 onBeforeMount(()=>{
-    // const user = getLocal('__user__','')
-    // const middle = JSON.parse(cookies.get(`${user}`))
    
-    // console.log(middle)
-    // cartList.value = turnFood.oldshoppingCart
-    // turnFood.shopNum = turnFood.oldshopNum
-    // turnFood.shopTotal = turnFood.oldshopTotal
-    // console.log( turnFood.oldshopTotal)
-    // console.log( cartList.value)
     const top = getSession('__top__',[])
     const bottom = getSession('__bottom__',[])
     
@@ -472,21 +399,6 @@ onBeforeMount(()=>{
     const m = cookies.get(`${user}`)
     if(m){
 
-        // const a = Every.value.name
-        // console.log(a)
-        // turnFood.singleShopNum = turnFood.oldSingleShop(a)
-        // console.log(turnFood.oldSingleShop(a))
-        // console.log(turnFood.singleShopNum)
-        // numlist =  turnFood.singleShopNum
-        // console.log(numlist)
-        // if(!Object.hasOwn(m,a)){
-        //     for(let i = 0;i < once.value.length;i ++){
-        //         arr[`${i}`] = -1
-        //         numlist[`${i}`] = 0
-        //     }
-        // }
-        
-        // console.log(numlist)
 
         const a = Every.value.name
         if(!Object.hasOwn(m,a)){
@@ -496,12 +408,9 @@ onBeforeMount(()=>{
             }
             turnFood.singleShopNum = turnFood.oldSingleShop(a)
             numlist =  turnFood.singleShopNum
-            console.log(numlist)
+           
         }else{
-            // for(let i = 0;i < once.value.length;i ++){
-            //     arr[`${i}`] = -1
-            //     numlist[`${i}`] = 0
-            // }
+          
             turnFood.singleShopNum = turnFood.oldSingleShop(a)
             for(let i = 0;i < once.value.length;i ++){
                 arr[`${i}`] = -1
@@ -512,8 +421,7 @@ onBeforeMount(()=>{
             }
         
            
-            // numlist =  turnFood.singleShopNum
-            console.log(numlist)
+            
 
         }
     }else{
@@ -521,18 +429,12 @@ onBeforeMount(()=>{
         set(p)
         
     }
-    // console.log(turnFood.showFood)
-    // console.log(Every.value.foodList.foodList)
-    // console.log(d1Height.value,boxHeight.value)
+  
 })
 onUnmounted(()=>{
     console.log('123')
 })
-// watch(()=>router.currentRoute.value.name,()=>{
-//     if(router.currentRoute.value.name === 'food'){
 
-//     }
-// })
 </script>
  
 

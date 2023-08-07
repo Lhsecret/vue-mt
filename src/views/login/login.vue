@@ -47,15 +47,14 @@ const rules = ref({
 const loginFn1 = ()=>{
     formRef.value.validate((valid)=>{
         if(valid){
-            // console.log(loginForm.value)
+          
             userStore.Username = loginForm.value.username
             userStore.loginFn(loginForm.value)
             setLocal('__user__',loginForm.value.username)
             userStore.nowtime = new Date().getTime()
             formateTime()
             setSession('__future__',userStore.future)
-            // console.log(userStore.nowtime)
-            // console.log(userStore.future)
+          
         }else{
             ElMessage({
                 message: "填写不规范",

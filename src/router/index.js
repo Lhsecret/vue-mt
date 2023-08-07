@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import useshopfood from '@/store/shopAndfood'
-import {getAddress} from '@/api/mine'
+
 import { createPinia } from 'pinia'
-import { nextTick } from 'vue'
+
 const pinia = createPinia()
 const turnFood = useshopfood(pinia)
 
@@ -46,11 +46,7 @@ const routes = [
           },
         ]
       },
-      // {
-      //   path:'login',
-      //   name:'login',
-      //   component: () => import(/* webpackChunkName: "login" */ '@/views/login/login.vue'),
-      // },
+    
       {
         path:'123456',
         name:'number',
@@ -102,27 +98,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "order" */ '@/views/Layout/components/order.vue'),
   }
 ]
-
-
-
-
-
-
-// const routes = [
-//   {
-//     path: '/',
-//     name: 'home',
-//     component: HomeView
-//   },
-//   {
-//     path: '/about',
-//     name: 'about',
-//     // route level code-splitting
-//     // this generates a separate chunk (about.[hash].js) for this route
-//     // which is lazy-loaded when the route is visited.
-//     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-//   }
-// ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

@@ -10,18 +10,12 @@
       type: Number,
       default: 1,
     },
-    // click: {
-    //   type: Boolean,
-    //   default: true,
-    // },
+
   });
   const emit = defineEmits(["scroll"]);
-  const { rootRef ,isPullUpLoad, newdata} = usePullup();
+  const { rootRef } = usePullup();
   
-  // 暴露出去给父组件用
-//   defineExpose({
-//     scroll,
-//   });
+
   </script>
   <style lang="scss" scoped></style>
   

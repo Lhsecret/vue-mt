@@ -35,29 +35,25 @@
     import useshopfood from '@/store/shopAndfood'
     import { onBeforeRouteLeave } from 'vue-router';
     const turnFood = useshopfood()
-    // import router from '@/router';
+   
     const FormRef = ref(null)
     const props = defineProps(['Single'])
-    // const emit = defineEmits(["change"])
+   
     const form = ref({
         contacts:props.Single.contacts,
         phone:props.Single.phone,
         address:props.Single.address
     })
     const confirm = async()=>{
-        // console.log(form.value)
+       
         await confirmMine(form.value)
-    // console.log(a)
+   
     }
     const Deletefn = async()=>{
-    //    console.log(val)
-    //    const params = {address:val}
-    //    console.log(params)
+   
        console.log(form.value.address)
        const {data} = await deleteFn(form.value)
-    //    const result = await getAddress()
-    //    const p = result.data.data
-    //    emit('change',p)
+   
        console.log(data)
        router.go(-1)
     }
@@ -70,18 +66,12 @@
     onBeforeRouteLeave(async(to,from,next)=>{
         console.log("123")
         const {data} = await getAddress()
-        // console.log(data)
+      
         turnFood.Address = data.data
         next()
     })
 
-    // beforeRouteLeave(async(to,from,next)=>{
-    //     const {data} = await getAddress()
-    //     console.log(data)
-    //     turnFood.Address = data.data
-    //     console.log('123')
-    //     next()
-    // })
+    
     </script>
      
     <style lang='scss' scoped>

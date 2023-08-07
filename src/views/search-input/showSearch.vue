@@ -14,12 +14,7 @@
         <span @touchend="turn">搜索</span>
     </div>
     <div class="d3">
-        <!-- <div class="small-one">
-            <p>热门搜索</p>
-            <div class="popularList">
-                <div></div>
-            </div>
-        </div> -->
+       
         <div class="small-two">
             <p>历史搜索</p>
             
@@ -68,8 +63,7 @@ const turn = async()=>{
     Reflect.set(middle[0],text,queryParams.value)
     turnshowShop.showShop = middle
     const arr =  getLocal("__historyList__",[])
-    // let arr2 = []
-    // arr2.push(middle)
+   
 
     if(arr.length === 0){
         arr.push(middle)
@@ -82,24 +76,16 @@ const turn = async()=>{
                     index++
                    
                 }
-                // console.log(queryParams.value.scraf)
-                // console.log(a)
-                // console.log(a.scraf)
+               
             }
             if(index === 0){
                 arr.push(middle)
                 setLocal("__historyList__",arr)
             }
-            // const b = scraf.indexOf(queryParams.scraf)
-        //    console.log(scraf)
-        
+           
     
     }
-
-   
-    
-   
-    router.push({
+     router.push({
         name:'search',
         
     })
@@ -119,11 +105,10 @@ const turnagain = (item)=>{
     const arr = getLocal("__historyList__",[])
     for(const i of arr){
         const a = Reflect.get(i[0],text)
-        // console.log(a,item)
-        // console.log(i)
+      
         if(a.scraf === item){
             turnshowShop.showShop = i
-            // console.log(i)
+           
         }
     }
 

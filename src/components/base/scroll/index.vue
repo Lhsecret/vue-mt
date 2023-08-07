@@ -21,13 +21,13 @@
     
   });
   const emit = defineEmits(["scroll","shoplist","shopList"]);
-  // const emits = defineEmits(['shoplist'])
-  const { rootRef } = useScroll(props,emit);
+  
+  const { rootRef,scroll } = useScroll(props,emit);
   
   // 暴露出去给父组件用
-  // defineExpose({
-  //   isPullUpLoad,
-  // });
+  defineExpose({
+    scroll
+  });
   </script>
   <style lang="scss" scoped></style>
   

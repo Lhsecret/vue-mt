@@ -76,7 +76,7 @@ const clear = ()=>{
     turnFood.shopTotal = 0
    turnFood.shopNum = 0
    turnFood.Disappear = false
-   // const a = turnFood.oldshopNum(b)
+   
    
 }
 

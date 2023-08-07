@@ -37,11 +37,10 @@
    import {getAddress,deleteFn} from '@/api/mine'
    import useshopfood from '@/store/shopAndfood'
    import { onBeforeMount,onMounted,ref,onUnmounted } from 'vue';
-//    @click="deletefn(item.address)"
-//    const router = useRouter()
+
    const turnFood = useshopfood() 
    const route = useRoute()
-   const list = ref([])
+  
    const single = ref({})
    const newAddress = ()=>{
     router.push({
@@ -55,9 +54,7 @@
     })
    }
 
-//    const deletefn = async(val)=>{
-//         await deleteFn(val)
-//    }
+
     const turn = (item)=>{
         single.value = item
         router.push({
@@ -68,15 +65,12 @@
     onUnmounted(()=>{
         console.log("abc")
     })
-    // router.onBeforeRouteEnter((to,from,next)=>{
-    //     console.log("123")
-    //     next()
-    // })
+   
 
    onBeforeMount(async()=>{
     const {data} = await getAddress()
     turnFood.Address = data.data
-    // console.log(list.value)
+    
    })
    </script>
     

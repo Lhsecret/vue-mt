@@ -21,7 +21,7 @@
       :value="item.value"
       />
    </el-select>
-   <Scroll class="d2" :tip="2" @shopList="shopFn2">
+   <Scroll class="d2" :tip="2" @shopList="shopFn2" v-loading="loading">
       <ul class="u1">
          <li
       v-for="item in shopMessage"
@@ -118,14 +118,16 @@ const options = [
 const turnFood = useshopfood()
 
 const turnshowShop = useisPullUpLoad()
-const route = useRoute()
+
 const router = useRouter()
 const shopMessage = ref([])
-const shopfood = ref([])
-// const fn = async(a)=>{
-//     const b = await getsearchshop(a)
-//     console.log(b)
-// }
+
+
+
+const loading = computed(()=>{
+   console.log("qwe")
+   return !shopMessage.value.length
+})
 
 const goback = ()=>{
    router.go(-1)
@@ -149,26 +151,14 @@ const changeList = ()=>{
 }
 
 const turnfood = (item)=>{
-   // nextTick()
+   
    turnFood.showFood = item
-   // turnFood.showFood = item.foodList.foodList
-   // const middle = item
-   // turnFood.showFood['main'] = `${middle}`
-
-   // const b = Every.value.name
-    turnFood.shopTotal = turnFood.oldshopTotal(item.name)
+  turnFood.shopTotal = turnFood.oldshopTotal(item.name)
    turnFood.shopNum = turnFood.oldshopNum(item.name)
-   // const a = turnFood.oldshopNum(b)
+   
    turnFood.shoppingCart = turnFood.oldshoppingCart(item.name)
    turnFood.shoppingAll =  turnFood.oldshoppingAll()
-   // const b = turnFood.oldSingleShop(item.name)
-
-   // for(let i in )
-   // turnFood.singleShopNum = turnFood.oldSingleShop(item.name)
-   // console.log(turnFood.shoppingAll)
-   // console.log(turnFood.shoppingCart)
-   // console.log(turnFood.singleShopNum)
-   // console.log(JSON.parse(JSON.stringify(turnFood.singleShopNum)))
+   
    router.push({
       name:'food',
       

@@ -9,7 +9,7 @@ export default function useFixed(){
     const onScroll1 = (pos)=>{
         scrollY.value = -pos.y
         
-        // console.log(newdata.value)
+        
     }
 
 
@@ -19,7 +19,7 @@ export default function useFixed(){
     function computedFn(){
         const height = directionRef.value.clientHeight
         divtopHeight.value = height
-        // console.log(height)
+        
        
     }
 

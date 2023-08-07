@@ -46,12 +46,7 @@ export const useuser = defineStore('USER',{
 
 
   },
-  // getters:{
-  //   Username:()=>{
-  //     const m = getLocal('__user__','')
-  //     return m
-  //   }
-  // }
+ 
 
    
 

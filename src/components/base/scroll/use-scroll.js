@@ -55,7 +55,7 @@ export function useScroll(props,emit) {
             turnFood.showshopEnd = true
           
             removeAllItem()
-          // removeAllItem()
+         
         }else{
          
           setTimeout(()=>{
@@ -98,9 +98,8 @@ export function useScroll(props,emit) {
 
   async function updateshopFn(){
       const {data} = await getshopFn()
-      // console.log(data)
       newdata.value = data.data
-      // console.log(newdata.value)
+    
       emit('shoplist',newdata.value)
       return newdata.value
   }
@@ -113,7 +112,7 @@ export function useScroll(props,emit) {
       }else{
         const a = turnFood.copyshop.length
         data2.value = turnFood.copyshop.splice(0,a)
-        // console.log(data2.value)
+        
       }
   
       
@@ -150,8 +149,8 @@ export function useScroll(props,emit) {
 
   return {
     rootRef,
-   
-    // newdata
+    scroll,
+    
   }
 }
 

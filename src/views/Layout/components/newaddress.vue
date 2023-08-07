@@ -43,12 +43,12 @@ const form = ref({
     address:''
 })
 const confirm = async()=>{
-    // console.log(form.value)
+    
     await confirmMine(form.value)
     router.push({
         name:'address'
     })
-    // console.log(a)
+  
 }
 const back = ()=>{
     router.go(-1)

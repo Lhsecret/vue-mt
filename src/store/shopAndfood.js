@@ -1,10 +1,9 @@
 import {useCookies} from 'vue3-cookies'
 import { defineStore } from 'pinia'
 import {getLocal,setLocal} from '@/api/storage'
-import {useuser} from '@/store/user'
+
 const {cookies} = useCookies()
-// const userStore = useuser()
-// const user = userStore.Username
+
 const user = getLocal('__user__','')
 export const useshopfood = defineStore('shopfood',{
   
@@ -101,7 +100,7 @@ export const useshopfood = defineStore('shopfood',{
       const m = cookies.get(`${user}`)
       return ()=>{
         if(m){
-          // const a = Object.hasOwn(m,p)
+         
           console.log(m)
           return m
         }else{
@@ -109,12 +108,7 @@ export const useshopfood = defineStore('shopfood',{
         }
       }
     }
-    // oldsingleShopNum:()=>{
-
-    // }
-    // oldcartList:()=>{
    
-    // }
 
   }
 })

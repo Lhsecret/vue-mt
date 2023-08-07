@@ -133,7 +133,7 @@ import {useuser} from '@/store/user'
 // const isappear = ref(true)
 const turnFood = useshopfood()
 const userStore = useuser()
-const loading = ref(true)
+// const loading = ref(true)
 const queryParams = ref('')
 const router = useRouter();
 const shopList = ref([])
@@ -153,7 +153,9 @@ const isshow = ()=>{
     })
     
 }
-
+// const loading = computed(()=>{
+//     return !categoryImg.value.length || !shopList.value.length
+// })
 
 // watch(()=>router.currentRoute.value.name,()=>{
 //     if(router.currentRoute.value.name === 'isshow'){
