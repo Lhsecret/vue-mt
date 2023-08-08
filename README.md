@@ -1,4 +1,4 @@
-# vue3-mt
+# 模拟美团前端项目
 
 ## Project setup
 ```
