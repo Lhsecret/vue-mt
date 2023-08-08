@@ -32,7 +32,7 @@ router.beforeEach(async(to,from,next)=>{
         console.log(allRoute)
         const routeIndex = allRoute.findIndex((item)=> item.path === to.path)
         if(routeIndex >= 0 && isLoginCode.code === 1){
-            if(userStore.future - userStore.nowtime < 0 && future){
+            if(future - userStore.nowtime < 0 && future){
                 const a = await Renewal()
                 console.log(a)
                 console.log('3')

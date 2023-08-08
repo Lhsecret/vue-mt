@@ -82,9 +82,12 @@ const turnOrder = ()=>{
     })
 }
 
-const confirm = ()=>{
+const confirm = async()=>{
     userStore.Loginout()
     dialog.value = false
+    router.push({
+        name:'Layout'
+    })
 }
 </script>
  

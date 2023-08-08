@@ -96,6 +96,7 @@ const goback = ()=>{
 
 const deleteFn = ()=>{
     removeLocalItem('__historyList__')
+    History.value = []
     historyList.value = []
 }
 

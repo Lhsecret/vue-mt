@@ -207,11 +207,15 @@ const settlement = ()=>{
 
     let history = getLocal('__historyshop__',[])
     if(history.length === 0){
-        setLocal('__historyshop__',a.name)
+        let arr = []
+        arr.push(a.name)
+        setLocal('__historyshop__',arr)
     }else{
-        let arr = getLocal('__historyshop__',[])
-        arr.push(a)
-        setLocal('__historyshop__',a.name)
+        
+        let arr2 = getLocal('__historyshop__',[])
+        console.log(arr2)
+         arr2.push(a.name)
+        setLocal('__historyshop__',arr2)
     }
    
         router.push({
