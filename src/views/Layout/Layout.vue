@@ -26,7 +26,7 @@
             <div class="top">
         <div class="direction" ref="directionRef" >
             <el-icon><Location /></el-icon>
-            <span style="padding-left: 1.33vw;padding-right: 1.33vw;">登封</span>
+            <span style="padding-left: 1.33vw;padding-right: 1.33vw;">位置</span>
             <el-icon><ArrowRight /></el-icon>
         </div>
         <div class="search">
