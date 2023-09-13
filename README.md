@@ -1,4 +1,4 @@
-# vue3-mt
+# 模拟美团前端项目
 
 ## Project setup
 ```
@@ -22,3 +22,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+后端地址：https://github.com/Lhsecret/node-mt
