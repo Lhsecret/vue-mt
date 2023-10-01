@@ -1,13 +1,13 @@
 <template>
  
-<div class=" " ref="d1Ref" >
+<div class="d1" ref="d1Ref" >
     <div class="top" :style="topbg">
 
-        
-    </div>
-    <div class="back" @click="back">
+        <div class="back" @click="back">
             <el-icon><ArrowLeft /></el-icon>
         </div>
+    </div>
+    
     <div class="middle">
         <span style="font-size: 7vw; font-weight: 500; padding: 3vw 7vw 3vw;">{{ Every.name }}</span>
         <img :src="Every.pic" alt="" style="width: 17vw; height: 17vw; background-repeat: repeat;">
