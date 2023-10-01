@@ -25,4 +25,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 后端地址：https://github.com/Lhsecret/node-mt
 
 ### Tips
-代码实现的功能不多，有搜索功能，查询功能，购物车功能，登录，懒加载等。受数据的限制，搜索关键字有私房菜，烧烤两个。
+代码实现的功能不多，有搜索功能，查询功能，购物车功能，登录，懒加载，地址设置查询等。受数据的限制，搜索关键字有私房菜，烧烤两个。
