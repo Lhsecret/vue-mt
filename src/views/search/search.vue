@@ -8,7 +8,7 @@
    <el-select 
    v-model="value" 
    placeholder="综合排序"
-   size="large" 
+   
    filterable 
   
    class="m2"
@@ -21,7 +21,7 @@
       :value="item.value"
       />
    </el-select>
-   <Scroll class="d2" :tip="2" @shopList="shopFn2" v-loading="loading">
+   <Scroll class="d2" :tip="2" @shopList="shopFn2" >
       <ul class="u1">
          <li
       v-for="item in shopMessage"
@@ -78,7 +78,7 @@
         </div>
       <div class="bottom-tips" v-if="turnFood.showshopEnd">
             已经到底了
-        </div>
+      </div>
         
       </ul>
       
@@ -100,7 +100,7 @@ import Scroll from "@/components/base/scroll";
 import useshopfood from '@/store/shopAndfood'
 import { getSession,setSession,removeAllItem,removeItem} from '@/api/storage'
 // 距离优先 评分优先 人均低到高 速度优先
-const value = ref(null)
+const value = ref('')
 const options = [
   
    {
@@ -222,6 +222,9 @@ onMounted(()=>{
          margin-left: 2.5vw;
          width: 30vw;
          font-size: 10px;
+         input{
+            width: 112px;
+         }
       }
       .d2{
       height: 100%;

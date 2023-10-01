@@ -12,7 +12,6 @@ export const useshopfood = defineStore('shopfood',{
     copyshop:[],
     showshopLoading:false,
     showshopEnd:false,
-
     Disappear:false,
     
     foodnumber:0,

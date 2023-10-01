@@ -1,6 +1,9 @@
 <template>
  
 <div class="d1">
+    <div class="top" >
+      <el-icon @click="goback"><ArrowLeftBold /></el-icon>
+   </div>
     <div class="login-content">
         <p>欢迎登录美团</p>
         <el-form :model="loginForm" class="login-form" :rules="rules" ref="formRef">
@@ -22,12 +25,14 @@
  
 <script setup>
 import {ref,computed} from 'vue'
+import { ArrowLeftBold } from "@element-plus/icons-vue";
 import { validatePassword } from "./validate";
 import { ElMessage } from "element-plus";
 import {useuser} from '@/store/user'
 import { formateTime } from '@/views/login/formateTime'
 import {getLocal,setLocal} from '@/api/storage'
 import { getSession,setSession,removeAllItem} from '@/api/storage'
+import router from '@/router';
 const userStore = useuser()
 const formRef = ref(null)
 const loginForm = ref({
@@ -44,6 +49,10 @@ const rules = ref({
   ],
 })
 
+
+const goback = function(){
+    router.go(-1);
+}
 const loginFn1 = ()=>{
     formRef.value.validate((valid)=>{
         if(valid){
@@ -86,6 +95,12 @@ const loginFn2 = ()=>{
     display: flex;
     position: relative;
     justify-content: center;
+    .top{
+      padding: 3vw;
+      margin-bottom: 4vw;
+      background-color: white;
+      width: 100%;
+    }
     .login-content{
         position: absolute;
         top: 40vw;
@@ -96,6 +111,9 @@ const loginFn2 = ()=>{
         }
         button{
             margin-top: 4vw;
+        }
+        .el-button+.el-button{
+            margin-left: 0;
         }
     }
 }

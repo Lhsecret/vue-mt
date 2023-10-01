@@ -1,6 +1,6 @@
 <template>
  
-<div class="d1" ref="d1Ref" >
+<div class=" " ref="d1Ref" >
     <div class="top" :style="topbg">
 
         
@@ -282,7 +282,6 @@ const select = async(index,index1,Every)=>{
         
         const user = getLocal('__user__','')
         cookies.set(`${user}`,JSON.stringify(cart),'2d')
-      
     }
     
    
@@ -312,7 +311,6 @@ const addFood = (index,index1,Every)=>{
         cart[`${name}`][0].SingleShop = turnFood.singleShopNum
         const user = getLocal('__user__','')
         cookies.set(`${user}`,JSON.stringify(cart),'2d')
-
 }
 
 const reduceFood = (index,index1,Every)=>{
@@ -359,8 +357,6 @@ const reduceFood = (index,index1,Every)=>{
         console.log('abc')
         cookies.set(`${user}`,JSON.stringify(cart),'2d')
        }
-        
-  
 }
 
 const topbg = computed(()=>{
@@ -378,13 +374,12 @@ function set(p) {
         arr[`${i}`] = -1
         numlist[`${i}`] = 0
     }
-   
 }
 
-onMounted(()=>{
+// onMounted(()=>{
 
   
-})
+// })
 onBeforeMount(()=>{
    
     const top = getSession('__top__',[])
