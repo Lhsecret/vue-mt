@@ -128,8 +128,6 @@ import useisPullUpLoad from '@/store/isPullUpLoad'
 import { getSession,setSession} from '@/api/storage'
 import useshopfood from '@/store/shopAndfood'
 import {useuser} from '@/store/user'
-
-// import useShopdata from './layoutShopdata'
 // const isappear = ref(true)
 const turnFood = useshopfood()
 const userStore = useuser()
@@ -139,8 +137,6 @@ const router = useRouter();
 const shopList = ref([])
 const categoryImg = ref([])
 const slider = ref([])
-const shopRef = ref(null)
-// const loading = ref(true)
 const isPullUpLoadStore = useisPullUpLoad()
 
 
@@ -153,9 +149,6 @@ const isshow = ()=>{
     })
     
 }
-// const loading = computed(()=>{
-//     return !categoryImg.value.length || !shopList.value.length
-// })
 
 watch(()=>router.currentRoute.value.name,()=>{
     if(router.currentRoute.value.name === 'isshow'){
@@ -173,9 +166,6 @@ const categoryFn = async()=>{
 }
 
 const turnmeishi = (item)=>{
-
-   
-    // console.log(turnFood.showFood)
     router.push({
         name:'meishi'
     })
@@ -194,15 +184,9 @@ const shopFn = async()=>{
         shopList.value = arr
     }else{
         const {data} = await getshopFn()
-        // turnFood.showFood = data2
         shopList.value = data.data
         setSession("__shopList__",data.data)
     }
-    
-
-    // loading.value = false
-    // console.log(shopList.value)
-    // console.log(shopRef.value.isPullUpLoad)
 }
 
 
@@ -212,10 +196,6 @@ function turn(item){
         query:{
             id:item._id
         }
-        // path:'/layout/123456/',
-        // query:{
-        //     id:item._id
-        // }
     })
 }
 
@@ -238,14 +218,8 @@ const turnOrder = ()=>{
         name:'order'
     })
 }
-// const isPull = computed(()=>{
-//     return shopRef.value.isPullUpLoad
-// })
 onMounted(()=>{
-    // userStore.nowtime = new Date()
     const allRoute =  router.getRoutes()
-    
-    // console.log(allRoute)
 })
 
 onBeforeMount(()=>{
