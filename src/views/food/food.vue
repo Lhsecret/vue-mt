@@ -16,13 +16,10 @@
             <span>配送约{{ Every.time }}</span>
         </div>
         <div>
-            <!-- 亲爱的顾客{{ arr.haa }} -->
         </div>
         <div class="content">
             <el-tabs v-model="activeName" class="demo-tabs" >
             <el-tab-pane label="点菜" name="first">
-                
-              <!-- <Scroll> -->
                 <div class="box" ref="boxRef">
                 <div class="left" style="position: fixed; background-color: white; height: 100%;">
                     <ul>
@@ -37,7 +34,6 @@
                         </li>
                     </ul>
                 </div>
-                <!-- <Scroll> -->
                     <div class="right">
                     <Scroll style="height: 100%; overflow: hidden;" @scroll="onScroll">
                         <ul ref="groupRef">
@@ -79,12 +75,14 @@
                     </ul>
                     </Scroll>  
                 </div>
-                <!-- arr[`${index1}`] === index1 -->
-                <!-- numlist[`${index1}`] === 0 -->
                </div>
-              <!-- </Scroll> -->
             </el-tab-pane>
-            <el-tab-pane label="Config" name="second">Config</el-tab-pane>
+            <el-tab-pane label="Config" name="second" class="config">
+                    炒饭是常见的一种食物，是用煮好的米饭、一些菜肴、
+                鸡蛋爆炒而成。炒饭分为多种品类，如扬州炒饭、香肠
+                炒饭、西红柿炒饭、咖喱炒饭、培根炒饭等。在各地都
+                有独特款式。
+            </el-tab-pane>
             </el-tabs>
         </div>
     </div>
@@ -469,6 +467,10 @@ onUnmounted(()=>{
             .demo-tabs{  
                
                 .el-tabs__content{
+                    .config{
+                        padding: 10px 5px 15px 5px;
+                        text-indent: 32px;
+                    }
                     #pane-first{
                     .box{
                         // display: flex;

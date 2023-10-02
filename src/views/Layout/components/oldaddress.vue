@@ -38,17 +38,19 @@
    
     const FormRef = ref(null)
     const props = defineProps(['Single'])
-   
+   //设置表单的响应式数据
     const form = ref({
         contacts:props.Single.contacts,
         phone:props.Single.phone,
         address:props.Single.address
     })
+    //保存地址信息
     const confirm = async()=>{
        
         await confirmMine(form.value)
    
     }
+    //删除地址信息
     const Deletefn = async()=>{
    
        console.log(form.value.address)
@@ -57,12 +59,13 @@
        console.log(data)
        router.go(-1)
     }
-
+    //路由返回
     const back = ()=>{
         router.push({
             name:'address'
         })
     }
+    //在路由跳转前的操作
     onBeforeRouteLeave(async(to,from,next)=>{
         console.log("123")
         const {data} = await getAddress()

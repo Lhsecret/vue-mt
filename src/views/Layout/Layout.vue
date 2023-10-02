@@ -3,14 +3,11 @@
 <div class="No-one1">
    
     <div class="search2" :style="divtopStyle">
-            
             <el-input
-           
             :prefix-icon="Search"
             placeholder="请输入商家或商品名称"
             style="width: 90.67vw; height: 10.67vw;"
             @focus="isshow"
-           
             ></el-input>
             <div class="button">搜索</div>
         </div>
@@ -26,7 +23,7 @@
             <div class="top">
         <div class="direction" ref="directionRef" >
             <el-icon><Location /></el-icon>
-            <span style="padding-left: 1.33vw;padding-right: 1.33vw;">登封</span>
+            <span style="padding-left: 1.33vw;padding-right: 1.33vw;">位置</span>
             <el-icon><ArrowRight /></el-icon>
         </div>
         <div class="search">
@@ -50,7 +47,7 @@
                v-for="item in categoryImg"
                :key="item"
                class="cate-food"
-              @click="turn(item)"
+              
                >
                 <img :src="item.imgUrl" alt="">
                 <div>{{ item.text }}</div>
@@ -73,7 +70,7 @@
             :key="item._id"
             class="d2"
             style="display: flex; margin-bottom: 7.6vw;"
-            @click="turnmeishi(item)"
+            
             >
             <img :src="item.pic" alt="" style="width:27.8vw; height: 27.8vw;">
             <div style="padding-left: 2.5vw;">
@@ -81,7 +78,7 @@
                 <div style="margin-top: 3vw; position: relative;">
                     <span style="color: brown; font-size: 3.5vw; margin-right: 2vw;">{{ item.score }}</span>
                     <span style="color: darkgray; font-size: 3.5vw;">{{ item.sales }}</span>
-                    <span style="color: chocolate; font-size: 2.8vw; margin-left: 32vw;">{{ item.message }}</span>
+                    <span style="color: chocolate; font-size: 2.8vw; margin-left: 30vw;">{{ item.message }}</span>
                 </div>
                 <div style="margin-top: 3vw;">
                     <span style="font-size: 2.5vw; color: darkgray; margin-right: 3vw;">{{ item.price }}</span>
@@ -128,10 +125,8 @@ import useisPullUpLoad from '@/store/isPullUpLoad'
 import { getSession,setSession} from '@/api/storage'
 import useshopfood from '@/store/shopAndfood'
 import {useuser} from '@/store/user'
-// const isappear = ref(true)
 const turnFood = useshopfood()
 const userStore = useuser()
-// const loading = ref(true)
 const queryParams = ref('')
 const router = useRouter();
 const shopList = ref([])
@@ -141,7 +136,7 @@ const isPullUpLoadStore = useisPullUpLoad()
 
 
 const {onScroll1,directionRef,divtopStyle} = useFixed()
-
+//点击跳转到搜索页面
 const isshow = ()=>{
    
     router.push({
@@ -149,15 +144,13 @@ const isshow = ()=>{
     })
     
 }
-
+//监听路由变化，在发生变化时重新刷新页面
 watch(()=>router.currentRoute.value.name,()=>{
     if(router.currentRoute.value.name === 'isshow'){
         location.reload();
     }
-  
-  
 })
-
+//获取图标列表
 const categoryFn = async()=>{
 
     const {data} = await getFdcategory()
@@ -165,19 +158,15 @@ const categoryFn = async()=>{
     
 }
 
-const turnmeishi = (item)=>{
-    router.push({
-        name:'meishi'
-    })
-}
 
 
+//轮播图的函数
 const lunboFn = async()=>{
     const {data} = await getLunbo()
     slider.value = data.data
     
 }
-
+//获取店铺列表并在会话存储里放置或者取出
 const shopFn = async()=>{
     let arr = getSession("__shopList__",[])
     if(arr.length){
@@ -188,24 +177,14 @@ const shopFn = async()=>{
         setSession("__shopList__",data.data)
     }
 }
-
-
-function turn(item){
-    router.push({
-        path:'/layout/123456',
-        query:{
-            id:item._id
-        }
-    })
-}
-
+//设置店铺的会话存储
 const shopFn1 = (arr)=>{
    for( let item of arr){
     shopList.value.push(item)
    }
    setSession("__shopList__",shopList.value)
 }
-
+//路由跳转
 const turnMine = ()=>{
     
     router.push({
@@ -221,7 +200,7 @@ const turnOrder = ()=>{
 onMounted(()=>{
     const allRoute =  router.getRoutes()
 })
-
+//在dom挂载之前的执行
 onBeforeMount(()=>{
     categoryFn()
     lunboFn()
