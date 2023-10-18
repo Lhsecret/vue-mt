@@ -73,12 +73,12 @@
             
             >
             <img :src="item.pic" alt="" style="width:27.8vw; height: 27.8vw;">
-            <div style="padding-left: 2.5vw;">
+            <div style="padding-left: 2.5vw; width: 100%;">
                 <div style="font-size: 5vw;">{{ item.name }}</div>
                 <div style="margin-top: 3vw; position: relative;">
                     <span style="color: brown; font-size: 3.5vw; margin-right: 2vw;">{{ item.score }}</span>
                     <span style="color: darkgray; font-size: 3.5vw;">{{ item.sales }}</span>
-                    <span style="color: chocolate; font-size: 2.8vw; margin-left: 30vw;">{{ item.message }}</span>
+                    <span style="color: chocolate; font-size: 2.8vw; position: absolute; right: 5vw;">{{ item.message }}</span>
                 </div>
                 <div style="margin-top: 3vw;">
                     <span style="font-size: 2.5vw; color: darkgray; margin-right: 3vw;">{{ item.price }}</span>
